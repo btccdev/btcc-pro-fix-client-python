@@ -5,23 +5,12 @@ import quickfix as fix
 import quickfix44 as fix44
 import uuid
 
-from GenAccountString import GenAccountString
 import DefineField as myfix
 
-class Sender():
+class MarketDataReq():
 
     def __init__(self, sessionID):
         self.sessionID = sessionID
-
-    def GetAccountInfo(self,accessKey, secretKey):
-        message = fix.Message ()
-        header = message.getHeader()
-        header.setField(fix.MsgType ('U1000'))
-        account = GenAccountString(accessKey, secretKey).getAccountString()
-        message.setField(fix.Account(account))
-        accReqID = str(uuid.uuid1())
-        message.setField(myfix.AccReqID(accReqID)) 
-        fix.Session.sendToTarget(message, self.sessionID)
 
     def GetMarketData(self):
         message = fix.Message ()
