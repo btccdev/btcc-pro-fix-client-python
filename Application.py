@@ -3,14 +3,15 @@
 
 import quickfix as fix
 import quickfix44 as fix44
-from Sender import Sender
+from AccountInfoRequest import AccountInfoReq
+from MarketDataRequest import MarketDataReq
 import Message
 
 class Application (fix.Application):
 
     def onCreate (self, sessionID):
         self.sessionID = sessionID
-        print ("Application created - session: " + sessionID.toString ())
+        print ("Session created - sessionID: " + sessionID.toString ())
 
     def onLogon (self, sessionID):
         print "Logon", sessionID
@@ -31,7 +32,8 @@ class Application (fix.Application):
         pass
        
     def run(self, accesskey, secretkey):
-        sender = Sender(self.sessionID)
+        AIReq = AccountInfoReq(self.sessionID)
+        MDReq = MarketDataReq(self.sessionID)
         print '''
         input 1 to get accountinfo,
         input 2 to get marketdata,
@@ -40,9 +42,9 @@ class Application (fix.Application):
         while True:
             input = raw_input()
             if input == '1':
-                sender.GetAccountInfo(accesskey, secretkey)
+                AIReq.GetAccountInfo(accesskey, secretkey)
             elif input == '2':
-                sender.GetMarketData()
+                MDReq.GetMarketData()
             elif input == 'Q':
                 break
             else:

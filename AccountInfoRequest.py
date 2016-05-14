@@ -1,10 +1,15 @@
 #!/usr/bin/python
 #coding=utf-8
+from quickfix import fix
+from quickfix44 import fix44
 from hashlib import sha1
 from hmac import new as hmac
 import hashlib
+import uuid
 import time
 import base64
+
+import DefineField as myfix
 
 class GenAccountString():
     def __init__(self, accesskey, secretkey):
@@ -26,3 +31,18 @@ class GenAccountString():
         basicAuth = "%s:Basic %s"%(tonce,userpass)
         return basicAuth
 
+
+class AccountInfoReq():
+
+    def __init__(self, sessionID):
+        self.sessionID = sessionID
+
+    def GetAccountInfo(self,accessKey, secretKey):
+        message = fix.Message ()
+        header = message.getHeader()
+        header.setField(fix.MsgType ('U1000'))
+        account = GenAccountString(accessKey, secretKey).getAccountString()
+        message.setField(fix.Account(account))
+        accReqID = str(uuid.uuid1())
+        message.setField(myfix.AccReqID(accReqID)) 
+        fix.Session.sendToTarget(message, self.sessionID)
