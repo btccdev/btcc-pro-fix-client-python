@@ -1,7 +1,8 @@
 #!/usr/bin/python
 #coding=utf-8
-from quickfix import fix
-from quickfix44 import fix44
+
+import quickfix as fix
+import quickfix44 as fix44
 from hashlib import sha1
 from hmac import new as hmac
 import hashlib
