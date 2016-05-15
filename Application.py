@@ -35,18 +35,9 @@ class Application (fix.Application):
         AIReq = AccountInfoReq(self.sessionID)
         MDReq = MarketDataReq(self.sessionID)
         print '''
-        input 1 to get accountinfo,
-        input 2 to get marketdata,
-        input Q to quit
+        define request here
         '''
-        while True:
-            input = raw_input()
-            if input == '1':
-                AIReq.GetAccountInfo(accesskey, secretkey)
-            elif input == '2':
-                MDReq.GetMarketData()
-            elif input == 'Q':
-                break
-            else:
-                continue
+        AIReq.GetAccountInfo(accesskey, secretkey)
+        MDReq.GetMarketData()
+            
 
