@@ -1,1 +1,1 @@
-demo of pro cny
+first version code for BTCC pro exchange CNY market
