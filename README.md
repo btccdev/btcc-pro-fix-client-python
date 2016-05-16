@@ -1,4 +1,6 @@
-first version code for BTCC pro exchange CNY market
+First version code for BTCC pro exchange CNY market.
+
+This version works on getting account info and market data.
 
 For using this sample code, please confirm to install 'stunnel' in your local environment or your remote servers.
 

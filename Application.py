@@ -32,12 +32,12 @@ class Application (fix.Application):
         pass
        
     def run(self, accesskey, secretkey):
-        AIReq = AccountInfoReq(self.sessionID)
-        MDReq = MarketDataReq(self.sessionID)
+        AccountReq = AccountInfoReq(self.sessionID)
+        MarketReq = MarketDataReq(self.sessionID)
         print '''
-        define request here
+        define requests here
         '''
-        AIReq.GetAccountInfo(accesskey, secretkey)
-        MDReq.GetMarketData()
+        AcountReq.GetAccountInfo(accesskey, secretkey)
+        MarketReq.GetMarketData()
             
 
